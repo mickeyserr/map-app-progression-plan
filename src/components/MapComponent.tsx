@@ -4,7 +4,7 @@ import type { FillLayerSpecification } from "@vis.gl/react-maplibre";
 import type { FeatureCollection } from "geojson";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-const config = { apikey: "QvLdYr8zRWaBkcKQWHrwX6LFXK2KsfiB" };
+const apiKey = import.meta.env.VITE_OS_API_KEY as string;
 
 const endpoints = {
     vts: "https://api.os.uk/maps/vector/v1/vts",
@@ -53,9 +53,9 @@ export default function MapComponent() {
     return (
         <Map
             initialViewState={{
-                longitude: -0.13806,
+                longitude: -0.15806,
                 latitude: 51.54230,
-                zoom: 13.5,
+                zoom: 12.3,
             }}
             style={{ width: 1024, height: 768 }}
             mapStyle="https://raw.githubusercontent.com/OrdnanceSurvey/OS-Vector-Tile-API-Stylesheets/master/OS_VTS_3857_Open_Greyscale.json"
@@ -64,7 +64,7 @@ export default function MapComponent() {
                     return { url: url + "&srs=3857" };
                 } else {
                     return {
-                        url: url + "?key=" + config.apikey + "&srs=3857",
+                        url: url + "?key=" + apiKey + "&srs=3857",
                     };
                 }
             }}
